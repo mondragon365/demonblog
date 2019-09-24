@@ -1,4 +1,4 @@
-import { APP_LOAD, REDIRECT } from '../constants/actionTypes';
+import { APP_LOAD, REDIRECT,REGISTER } from '../constants/actionTypes';
 
 const defaultState = {
   appName: 'Conduit',
