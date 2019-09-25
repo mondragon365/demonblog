@@ -11,32 +11,33 @@ import {
 
 const mapStateToProps = state => ({ ...state.auth });
 const fetchPosts = (email, password) => {
-    return function (dispatch) {
-      console.log('dispatchedd');
-      //dispatch(requestPosts());
-      return fetch('https://conduit.productionready.io/api/users/login',{
-        method: 'post',
-        body: {
-            "user": { email, password }
-        }
-       })
-        .then(
+  return function (dispatch) {
+    return fetch('https://conduit.productionready.io/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        'user': { 'email': 'demon5@gmail.com', 'password': '12345678' }
+      })
+    })
+      .then(
         response => response.json(),
         error => console.log('An error occurred.', error),
       )
-        .then((json) => {
-          dispatch({ type: LOGIN, payload: json });
-        },
+      .then((json) => {
+        dispatch({ type: LOGIN, payload: json });
+      },
       );
-    };
-  }
+  };
+}
 const mapDispatchToProps = dispatch => ({
   onChangeEmail: value =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'email', value }),
   onChangePassword: value =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
   onSubmit: (email, password) =>
-    dispatch(fetchPosts(email,password)),
+    dispatch(fetchPosts(email, password)),
   onUnload: () =>
     dispatch({ type: LOGIN_PAGE_UNLOADED })
 });

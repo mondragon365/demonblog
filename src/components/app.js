@@ -6,6 +6,7 @@ import { APP_LOAD, REDIRECT } from '../constants/actionTypes'
 import store from '../store';
 import agent from '../agent';
 import { push } from 'react-router-redux';
+import history from '../history'
 
 const mapStateToProps = state => {
     return {
@@ -25,8 +26,10 @@ const mapDispatchToProps = dispatch => ({
 class App extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.redirectTo) {
-            store.dispatch(push(nextProps.redirectTo));
-            this.props.onRedirect();
+            console.log(history);
+            history.push('/');
+            //store.dispatch(push(nextProps.redirectTo));
+            //this.props.onRedirect();
         }
     }
     componentWillMount() {

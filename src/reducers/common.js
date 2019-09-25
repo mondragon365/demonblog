@@ -1,4 +1,4 @@
-import { APP_LOAD, REDIRECT,REGISTER } from '../constants/actionTypes';
+import { APP_LOAD, REDIRECT, REGISTER,LOGIN } from '../constants/actionTypes';
 
 const defaultState = {
   appName: 'Conduit',
@@ -21,6 +21,7 @@ export default (state = defaultState, action) => {
         ...state,
         redirectTo: null
       };
+    case LOGIN:
     case REGISTER:
       return {
         ...state,
