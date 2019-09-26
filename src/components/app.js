@@ -3,9 +3,7 @@ import Header from './header'
 import Main from './main'
 import { connect } from 'react-redux';
 import { APP_LOAD, REDIRECT } from '../constants/actionTypes'
-import store from '../store';
 import agent from '../agent';
-import { push } from 'react-router-redux';
 import history from '../history'
 
 const mapStateToProps = state => {
@@ -26,10 +24,7 @@ const mapDispatchToProps = dispatch => ({
 class App extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.redirectTo) {
-            console.log(history);
             history.push('/');
-            //store.dispatch(push(nextProps.redirectTo));
-            //this.props.onRedirect();
         }
     }
     componentWillMount() {

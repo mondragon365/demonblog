@@ -16,7 +16,6 @@ export default (state = defaultState, action) => {
         currentUser: action.payload ? action.payload.user : null
       };
     case REDIRECT:
-      console.log('redirect');
       return {
         ...state,
         redirectTo: null
@@ -30,7 +29,6 @@ export default (state = defaultState, action) => {
         currentUser: action.error ? null : action.payload.user
       };
     default:
-      console.log('default');
       return state;
   }
 };

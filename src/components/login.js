@@ -1,50 +1,25 @@
 import { Link } from 'react-router-dom';
 import ListErrors from './ListErrors';
 import React from 'react';
-//import agent from '../agent';
+import agent from '../agent';
 import { connect } from 'react-redux';
-import {
-  UPDATE_FIELD_AUTH,
-  LOGIN,
-  LOGIN_PAGE_UNLOADED
-} from '../constants/actionTypes';
+import { UPDATE_FIELD_AUTH, LOGIN_PAGE_UNLOADED } from '../constants/actionTypes';
 
 const mapStateToProps = state => ({ ...state.auth });
-const fetchPosts = (email, password) => {
-  return function (dispatch) {
-    return fetch('https://conduit.productionready.io/api/users/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        'user': { 'email': 'demon5@gmail.com', 'password': '12345678' }
-      })
-    })
-      .then(
-        response => response.json(),
-        error => console.log('An error occurred.', error),
-      )
-      .then((json) => {
-        dispatch({ type: LOGIN, payload: json });
-      },
-      );
-  };
-}
 const mapDispatchToProps = dispatch => ({
   onChangeEmail: value =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'email', value }),
   onChangePassword: value =>
     dispatch({ type: UPDATE_FIELD_AUTH, key: 'password', value }),
-  onSubmit: (email, password) =>
-    dispatch(fetchPosts(email, password)),
+  onSubmit: (email, password) =>{   
+    console.log(agent.Auth.login); 
+    console.log(agent.fetchPosts); 
+    //dispatch(agent.fetchPosts(email, password))
+    dispatch(agent.Auth.login('asd','asd'))
+  },
   onUnload: () =>
     dispatch({ type: LOGIN_PAGE_UNLOADED })
 });
-
-// const mapDispatchToProps = {
-//     getPosts: fetchPosts('asd','def')
-//   }
 
 class Login extends React.Component {
   constructor() {
